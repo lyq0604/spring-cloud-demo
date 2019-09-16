@@ -1,0 +1,66 @@
+server:
+  port: 18791
+spring:
+  application:
+    name: spring-cloud-blog
+  boot:
+    admin:
+      client:
+        url: http://localhost:18762
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring-cloud-blog?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat,config
+      #初始化连接大小
+      initial-size: 8
+      #最小空闲连接数
+      min-idle: 5
+      #最大连接数
+      max-active: 10
+      #查询超时时间
+      query-timeout: 6000
+      #事务查询超时时间
+      transaction-query-timeout: 6000
+      #关闭空闲连接超时时间
+      remove-abandoned-timeout: 1800
+
+
+#是否开启swagger
+swagger:
+  enable: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
+  client:
+    service-url:
+      defaultZone: http://localhost:18761/eureka
+
+#监控信息
+management:
+  endpoints:
+    web:
+      #设置对外暴露和隐藏的端点
+      exposure:
+        include: "*"
+      #允许跨域请求设置
+      cors:
+        allowed-methods: "*"
+        allowed-origins: "*"
+  endpoint:
+    #健康信息
+    health:
+      show-details: always
+
+#自定义信息
+info:
+  application:
+    name: spring-cloud-blog
+    description: cms博客服务
+
+

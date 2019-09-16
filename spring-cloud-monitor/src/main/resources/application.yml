@@ -1,0 +1,18 @@
+server:
+  port: 18762
+
+spring:
+  application:
+    name: spring-cloud-monitor
+  security:
+    user:
+      name: admin
+      password: 123456
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:18761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}

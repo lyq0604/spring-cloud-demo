@@ -1,0 +1,26 @@
+auth:
+  server:
+    path: http://localhost:18765
+server:
+  port: 18791
+spring:
+  application:
+    name: spring-cloud-file
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
+  client:
+    service-url:
+      defaultZone: http://localhost:18761/eureka
+security:
+  oauth2:
+    client:
+      client-id: spring-cloud-file
+      client-secret: file
+      user-authorization-uri: ${auth.server.path}/oauth/authorize
+      access-token-uri: ${auth.server.path}/auth/token
+      registered-redirect-uri: http://www.baidu.com
+    resource:
+      jwt:
+        key-uri: ${auth.server.path}/oauth/token_key

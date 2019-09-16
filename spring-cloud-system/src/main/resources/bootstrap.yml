@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: spring-cloud-system
+  cloud:
+    config:
+      uri: http://localhost:18763
+      profile: dev
+      label: master
+      name: ${spring.application.name}
+
+#监控信息
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      #设置对外暴露和隐藏的端点
+      exposure:
+        include: "*"
+      #允许跨域请求设置
+      cors:
+        allowed-methods: "*"
+        allowed-origins: "*"
+  endpoint:
+    #健康信息
+    health:
+      show-details: always

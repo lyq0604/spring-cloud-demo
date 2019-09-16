@@ -1,0 +1,73 @@
+server:
+  port: 18750
+
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 3000
+
+spring:
+  application:
+    name: spring-cloud-gateway
+  boot:
+    admin:
+      client:
+        url: http://localhost:18762
+  sleuth:
+      sampler:
+        probability: 1.0  #监测比例, 默认为0.1, 设置为1则为每次http动作都监控, 但是对性能会有影响 percentage probability
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      type: direct # simple direct
+  zipkin:
+    rabbitmq:
+      queue: zipkin
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      default-filters:
+      - StripPrefix=2
+      - name: Hystrix
+        args:
+          name: fallbackcmd
+          fallbackUri: forward:/fallback
+      routes:
+        - id: route-spring-cloud-system
+          uri: lb://spring-cloud-system
+          predicates:
+            - Path=/api/system/**
+        - id: route-spring-cloud-file
+          uri: lb://spring-cloud-file
+          predicates:
+            - Path=/api/file/**
+        - id: route-spring-cloud-auth
+          uri: lb://spring-cloud-auth
+          predicates:
+            - Path=/api/auth/**
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:18761/eureka
+
+#监控信息
+management:
+  endpoints:
+    web:
+      #设置对外暴露和隐藏的端点
+      exposure:
+        include: "*"
+      #允许跨域请求设置
+      cors:
+        allowed-methods: "*"
+        allowed-origins: "*"
+  endpoint:
+    #健康信息
+    health:
+      show-details: always

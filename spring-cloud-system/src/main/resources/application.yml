@@ -1,0 +1,74 @@
+server:
+  port: 18790
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:18762
+        username: admin
+        password: 123456
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring-cloud-system?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat,config
+      #初始化连接大小
+      initial-size: 8
+      #最小空闲连接数
+      min-idle: 5
+      #最大连接数
+      max-active: 10
+      #查询超时时间
+      query-timeout: 6000
+      #事务查询超时时间
+      transaction-query-timeout: 6000
+      #关闭空闲连接超时时间
+      remove-abandoned-timeout: 1800
+#  sleuth:
+#    sampler:
+#      probability: 1.0  #监测比例, 默认为0.1, 设置为1则为每次http动作都监控, 但是对性能会有影响 percentage probability
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#    listener:
+#      type: direct # simple direct
+#  zipkin:
+#    rabbitmq:
+#      queue: zipkin
+
+#是否开启swagger
+swagger:
+  enable: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
+  client:
+    service-url:
+      defaultZone: http://localhost:18761/eureka
+
+#自定义信息
+info:
+  application:
+    name: spring-cloud-system
+    description: cms基础服务
+
+#oauth2 client配置
+security:
+  oauth2:
+    client:
+      id: spring-cloud-system
+      client-secret: system
+      grant-type: password
+
+# mybatis
+mybatis:
+  mapper-locations: classpath:mappers/**.xml
+
+testKey: 11

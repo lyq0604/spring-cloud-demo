@@ -1,0 +1,42 @@
+server:
+  port: 7970
+
+spring:
+  application:
+    name: tx-manager
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tx-manager?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:18761/eureka/
+
+
+tx-lcn:
+  manager:
+    # TxManager Host Ip
+    host: 127.0.0.1
+    # TxClient连接请求端口1
+    port: 8070
+    # 心跳检测时间(ms)
+    heart-time: 15000
+    # 分布式事务执行总时间
+    dtx-time: 30000
+    #参数延迟删除时间单位ms
+    netty:
+      attr-delay-time: 10000
+    concurrent-level: 128
+    # 开启日志
+  logger:
+    enabled: true
+
+logging:
+  level:
+    com.codingapi: debug
