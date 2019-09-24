@@ -13,4 +13,7 @@ eureka:
     hostname: ${spring.cloud.client.ip-address}
     prefer-ip-address: true
     instance-id: ${eureka.instance.hostname}:${server.port}:${spring.application.name}
-
+    # 续约心跳时间
+    lease-renewal-interval-in-seconds: 30
+    # 客户端续约超时时间
+    lease-expiration-duration-in-seconds: 90

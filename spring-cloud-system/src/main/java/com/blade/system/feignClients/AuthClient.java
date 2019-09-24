@@ -1,6 +1,7 @@
 package com.blade.system.feignClients;
 
 import com.blade.common.domain.JWT;
+import com.blade.system.config.FeignConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author lyq
  * @create 8/31/19
  */
-@FeignClient(name = "spring-cloud-auth")
+@FeignClient(name = "spring-cloud-auth",configuration = {FeignConfiguration.class})
 public interface AuthClient {
 
     /**

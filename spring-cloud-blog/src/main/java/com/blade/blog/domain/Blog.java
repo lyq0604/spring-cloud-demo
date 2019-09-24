@@ -154,4 +154,11 @@ public class Blog implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+    public Blog() {
+    }
+
+    public Blog(String author) {
+        this.author = author;
+    }
 }

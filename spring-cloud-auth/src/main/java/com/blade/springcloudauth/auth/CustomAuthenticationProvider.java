@@ -1,9 +1,7 @@
 package com.blade.springcloudauth.auth;
 
-import com.alibaba.fastjson.JSONObject;
-import com.blade.common.utils.RedisUtil;
+import com.blade.springcloudauth.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.beans.BeanMap;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
 
 /**
  * 自定义认证处理
@@ -23,6 +22,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 
     @Autowired
     AuthService authService;
+    @Autowired
+    UserService userService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -32,7 +33,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
         if (!userDetails.getPassword().equals(password)) {
             throw new BadCredentialsException("密码不正确！");
         }
-        return new UsernamePasswordAuthenticationToken(userDetails,password,userDetails.getAuthorities());
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+        token.setDetails(userDetails);
+        return token;
     }
 
     @Override

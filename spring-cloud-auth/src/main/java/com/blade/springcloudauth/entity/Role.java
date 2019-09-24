@@ -1,10 +1,12 @@
 package com.blade.springcloudauth.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Table(name = "base_role")
-public class Role implements Serializable {
+public class Role implements Serializable, GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
@@ -53,5 +55,10 @@ public class Role implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    @Override
+    public String getAuthority() {
+        return this.roleName;
     }
 }

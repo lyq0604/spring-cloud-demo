@@ -6,10 +6,10 @@ hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 30
 spring:
   application:
     name: spring-cloud-gateway
-  boot:
-    admin:
-      client:
-        url: http://localhost:18762
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:18762
   sleuth:
       sampler:
         probability: 1.0  #监测比例, 默认为0.1, 设置为1则为每次http动作都监控, 但是对性能会有影响 percentage probability
@@ -39,6 +39,10 @@ spring:
           uri: lb://spring-cloud-system
           predicates:
             - Path=/api/system/**
+        - id: route-spring-cloud-blog
+          uri: lb://spring-cloud-blog
+          predicates:
+            - Path=/api/blog/**
         - id: route-spring-cloud-file
           uri: lb://spring-cloud-file
           predicates:

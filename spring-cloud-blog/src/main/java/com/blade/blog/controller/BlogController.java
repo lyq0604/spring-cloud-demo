@@ -1,39 +1,33 @@
 package com.blade.blog.controller;
 
+import com.blade.blog.domain.Blog;
 import com.blade.blog.service.BlogService;
+import com.blade.common.base.BaseController;
 import com.blade.common.response.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/blogs")
-public class BlogController {
-
-    @Autowired
-    BlogService blogService;
-
-    /**
-     * 根据主键删除
-     * @return
-     */
-    @DeleteMapping("/{id}")
-    public BaseResult deleteByKey(@PathVariable String id){
-        blogService.deleteByKey(id);
-        return new BaseResult().success();
-    }
+public class BlogController extends BaseController<BlogService,Blog>{
 
     /**
      * 根据用户id删除博客
      * @return
      */
-    @DeleteMapping("/user/{userId}")
+    @GetMapping("/user/{userId}")
     public BaseResult deleteByUserId(@PathVariable String userId){
-        blogService.deleteByUserId(userId);
-        return new BaseResult().success();
+        List<Blog> list = service.selectByUserId(userId);
+        return new BaseResult().success(list);
 
+    }
+
+    @DeleteMapping("/test")
+    public BaseResult test(){
+        service.test();
+        return new BaseResult().success();
     }
 
 }

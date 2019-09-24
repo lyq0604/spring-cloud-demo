@@ -30,9 +30,9 @@
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
 
         <!-- 指定生成 Mapper 的继承模板 -->
-        <plugin type="tk.mybatis.mappers.generator.MapperPlugin">
-            <property name="mappers" value="tk.mybatis.mappers.common.Mapper"/>
-        </plugin>
+        <!--<plugin type="tk.mybatis.mappers.generator.MapperPlugin">-->
+            <!--<property name="mappers" value="tk.mybatis.mappers.common.Mapper"/>-->
+        <!--</plugin>-->
 
         <!-- 注释 -->
         <commentGenerator>
@@ -45,7 +45,7 @@
                 driverClass="com.mysql.jdbc.Driver"
                 connectionURL="jdbc:mysql://localhost:3306/spring-cloud-system?useUnicode=true"
                 userId="root"
-                password="lslyq0604"/>
+                password="lslyq0604!@#"/>
         <!-- 类型转换 -->
         <javaTypeResolver>
             <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
@@ -67,7 +67,7 @@
         </javaClientGenerator>
         <!-- table可以有多个,每个数据库中的表都可以写一个table，tableName表示要匹配的数据库表,也可以在tableName属性中通过使用%通配符来匹配所有数据库表,只有匹配的表才会自动生成文件 -->
         <table
-                tableName="base_%"
+                tableName="base_permission"
                 enableCountByExample="false"
                 enableUpdateByExample="false"
                 enableDeleteByExample="false"
@@ -82,7 +82,7 @@
             <domainObjectRenamingRule searchString="^Base" replaceString=""/>
         </table>
         <table
-                tableName="rl_%"
+                tableName="base_operation"
                 enableCountByExample="false"
                 enableUpdateByExample="false"
                 enableDeleteByExample="false"
@@ -94,7 +94,52 @@
             <!-- 数据库表主键 -->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
             <!-- 去除前缀 -->
+            <domainObjectRenamingRule searchString="^Base" replaceString=""/>
+        </table>
+        <table
+                tableName="base_menu"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                selectByExampleQueryId="false">
+            <!-- 是否只生成POJO对象 -->
+            <property name="modelOnly" value="false"/>
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <!-- 去除前缀 -->
+            <domainObjectRenamingRule searchString="^Base" replaceString=""/>
+        </table>
+        <!--<table
+                tableName="rl_user_permission"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                selectByExampleQueryId="false">
+            &lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;
+            <property name="modelOnly" value="false"/>
+            <property name="useActualColumnNames" value="false"/>
+            &lt;!&ndash; 数据库表主键 &ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash; 去除前缀 &ndash;&gt;
             <domainObjectRenamingRule searchString="^Rl" replaceString=""/>
         </table>
+        <table
+                tableName="rl_role_permission"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                selectByExampleQueryId="false">
+            &lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;
+            <property name="modelOnly" value="false"/>
+            <property name="useActualColumnNames" value="false"/>
+            &lt;!&ndash; 数据库表主键 &ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash; 去除前缀 &ndash;&gt;
+            <domainObjectRenamingRule searchString="^Rl" replaceString=""/>
+        </table>-->
     </context>
 </generatorConfiguration>

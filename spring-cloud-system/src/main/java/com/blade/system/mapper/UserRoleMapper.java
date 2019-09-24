@@ -1,7 +1,14 @@
 package com.blade.system.mapper;
 
 import com.blade.system.entity.UserRole;
+import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
-public interface UserRoleMapper extends Mapper<UserRole> {
+import java.util.List;
+
+/**
+ * @author lyq
+ */
+@Repository
+public interface UserRoleMapper extends Mapper<UserRole>{
 }

@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class UserLoginDTO {
 
-    private JWT jwt;
+    private String token;
 
     private User user;
 
@@ -21,7 +21,7 @@ public class UserLoginDTO {
     }
 
     public UserLoginDTO(JWT jwt, User user) {
-        this.jwt = jwt;
+        this.token = jwt.getAccess_token();
         this.user = user;
     }
 }

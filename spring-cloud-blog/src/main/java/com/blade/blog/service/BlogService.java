@@ -1,28 +1,30 @@
 package com.blade.blog.service;
 
+import com.blade.blog.domain.Blog;
 import com.blade.blog.mapper.BlogMapper;
+import com.blade.common.base.BaseService;
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
-public class BlogService {
-
-    @Autowired
-    BlogMapper blogMapper;
+public class BlogService extends BaseService<BlogMapper,Blog>{
 
     /**
-     * 根据主键删除
-     * @param id
+     * 根据用户id获取文章列表
+     * @param userId
+     * @return
      */
-    public void deleteByKey(String id) {
-        blogMapper.deleteByPrimaryKey(id);
+    public List<Blog> selectByUserId(String userId) {
+        return mapper.select(new Blog(userId));
     }
 
-    /**
-     * 根据用户id删除博客
-     * @param userId
-     */
-    public void deleteByUserId(String userId) {
-        blogMapper.deleteByUserId(userId);
+    @Transactional
+    @LcnTransaction
+    public void test() {
+        mapper.deleteByUserId("2");
     }
 }

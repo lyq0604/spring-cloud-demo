@@ -30,4 +30,10 @@ public class CustomExceptionAdvice {
         return new BaseResult(e.getCode(), false, e.getMessage());
     }
 
+    @ExceptionHandler(Exception.class)
+    public BaseResult ExceptionHandler(HttpServletRequest request,Exception e){
+        log.error("运行异常，原因：[{}]",e.getMessage());
+        return new BaseResult().error(false,e.getMessage());
+    }
+
 }

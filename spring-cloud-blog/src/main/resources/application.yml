@@ -3,15 +3,15 @@ server:
 spring:
   application:
     name: spring-cloud-blog
-  boot:
-    admin:
-      client:
-        url: http://localhost:18762
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:18762
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/spring-cloud-blog?useUnicode=true&characterEncoding=utf-8
     username: root
-    password: 123456
+    password: lslyq0604!@#
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       filters: stat,config
@@ -62,5 +62,20 @@ info:
   application:
     name: spring-cloud-blog
     description: cms博客服务
+
+tx-lcn:
+#  client:
+#    manager-address: 18767
+  logger:
+    enabled: true
+    driver-class-name: ${spring.datasource.driver-class-name}
+    jdbc-url: jdbc:mysql://localhost:3306/tx-manager?useUnicode=true&characterEncoding=utf-8
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+logging:
+  level:
+    com:
+      codingapi: debug
+
 
 
