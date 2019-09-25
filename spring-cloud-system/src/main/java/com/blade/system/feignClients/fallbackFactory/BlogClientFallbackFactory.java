@@ -18,9 +18,10 @@ public class BlogClientFallbackFactory implements FallbackFactory<BlogClient> {
             }
 
             @Override
-            public BaseResult deleteByUserId() {
-                return new BaseResult().success("调用远程删除失败");
+            public BaseResult insertTestBlog() {
+                return new BaseResult().error(false,"调用测试分布式事务失败！");
             }
+
         };
     }
 }

@@ -24,8 +24,9 @@ public class BlogController extends BaseController<BlogService,Blog>{
 
     }
 
-    @DeleteMapping("/test")
-    public BaseResult test(){
+    @PostMapping("/test")
+    public BaseResult test() throws Exception {
+        Thread thread = Thread.currentThread();
         service.test();
         return new BaseResult().success();
     }

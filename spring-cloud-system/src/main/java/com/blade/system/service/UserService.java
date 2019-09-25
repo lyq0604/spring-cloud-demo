@@ -10,6 +10,7 @@ import com.blade.system.feignClients.AuthClient;
 import com.blade.system.feignClients.BlogClient;
 import com.blade.system.mapper.UserMapper;
 // import com.codingapi.txlcn.tc.annotation.LcnTransaction;
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -60,8 +61,16 @@ public class UserService extends BaseService<UserMapper,User>{
         return token.getAccess_token();
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    @LcnTransaction
     public void test() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(1);
+        // 本地事务
+        User user = new User();
+        user.setName("txTest");
+        user.setPassword("txTest");
+        user.setUsername("txTest");
+        userMapper.insert(user);
+        // 远程调用事务
+        blogClient.insertTestBlog();
     }
 }

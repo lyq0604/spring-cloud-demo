@@ -33,7 +33,7 @@ public class CustomExceptionAdvice {
     @ExceptionHandler(Exception.class)
     public BaseResult ExceptionHandler(HttpServletRequest request,Exception e){
         log.error("运行异常，原因：[{}]",e.getMessage());
-        return new BaseResult().error(false,e.getMessage());
+        return new BaseResult().error(false,"系统内部发生错误，操作失败，请稍后重试！");
     }
 
 }

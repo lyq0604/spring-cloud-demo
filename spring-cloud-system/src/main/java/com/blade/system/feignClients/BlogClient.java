@@ -8,6 +8,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author lyq
@@ -23,8 +24,7 @@ public interface BlogClient {
     @GetMapping(value = "/blogs/user/{userId}")
     BaseResult getBlogsByUserId(@PathVariable("userId") String userId);
 
-    // @LcnTransaction
-    @DeleteMapping("/blogs/test")
-    BaseResult deleteByUserId();
+    @PostMapping("/blogs/test")
+    BaseResult insertTestBlog();
 
 }
