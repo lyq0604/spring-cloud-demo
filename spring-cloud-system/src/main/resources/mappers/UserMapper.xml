@@ -11,12 +11,37 @@
         <result column="password" jdbcType="VARCHAR" property="password"/>
     </resultMap>
 
+    <!-- 根据用户名查询用户 -->
     <select id="getUserByUserName" resultType="com.blade.system.entity.User">
       SELECT
           username,
           password
       FROM base_user
       WHERE username = #{username}
+    </select>
+
+    <select id="getPermissionsByUserId" resultType="com.blade.system.entity.Permission">
+      SELECT
+          p.id AS id,
+          p.permission_name AS permissionName,
+          p.permission_code AS permissionCode
+      FROM rl_user_role rur
+      INNER JOIN rl_role_permission rrp ON rur.role_id = rrp.role_id
+      INNER JOIN base_permission p ON rrp.permission_id = p.id
+      WHERE rur.user_id = #{userId}
+    </select>
+
+    <select id="getMenuByUserId" resultType="com.blade.system.entity.Menu">
+        SELECT
+            m.id AS id,
+            m.menu_name AS menuName,
+            m.menu_path AS menuPath,
+            m.menu_icon AS menuIcon,
+            m.parent_id AS parentId
+        FROM rl_user_role rur
+        INNER JOIN rl_role_menu rrm ON rur.role_id = rrm.role_id
+        INNER JOIN base_menu m ON rrm.menu_id = m.id
+        WHERE rur.user_id = #{userId}
     </select>
 
 </mapper>

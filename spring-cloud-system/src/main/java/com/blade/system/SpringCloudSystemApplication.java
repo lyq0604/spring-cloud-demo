@@ -1,6 +1,6 @@
 package com.blade.system;
 
-import com.codingapi.txlcn.tc.config.EnableDistributedTransaction;
+// import com.codingapi.txlcn.tc.config.EnableDistributedTransaction;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -17,7 +17,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.blade.system.feignClients"})
 @MapperScan(basePackages = {"com.blade.system.mapper"})
-@EnableDistributedTransaction
+// @EnableDistributedTransaction
 public class SpringCloudSystemApplication {
 
     public static void main(String[] args) {

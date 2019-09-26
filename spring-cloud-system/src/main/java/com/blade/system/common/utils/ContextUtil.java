@@ -23,4 +23,11 @@ public class ContextUtil {
         return (Map<String, Object>) details.getDecodedDetails();
     }
 
+    public static String getCurrentUserId(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
+        Map<String, Object> extraInfo = (Map<String, Object>) details.getDecodedDetails();
+        return extraInfo.get("userId").toString();
+    }
+
 }

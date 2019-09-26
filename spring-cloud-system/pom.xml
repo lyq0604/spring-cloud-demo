@@ -20,7 +20,7 @@
     <dependencies>
 
          <!--分布式事务相关依赖-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.codingapi.txlcn</groupId>
             <artifactId>txlcn-tc</artifactId>
             <version>5.0.2.RELEASE</version>
@@ -34,7 +34,7 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>28.0-jre</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>

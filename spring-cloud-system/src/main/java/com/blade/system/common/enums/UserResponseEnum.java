@@ -8,7 +8,7 @@ public enum UserResponseEnum {
 
     USER_NOT_FOUND(50001, "用户不存在"),
 
-    USER_AUTHENTICATION_ERROR(50002, "用户密码不正确");
+    USER_AUTHENTICATION_ERROR(50002, "用户或密码不正确");
 
     private Integer code;
 

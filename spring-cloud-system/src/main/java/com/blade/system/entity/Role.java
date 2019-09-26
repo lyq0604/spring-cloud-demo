@@ -12,6 +12,9 @@ public class Role implements Serializable {
     @Column(name = "role_name")
     private String roleName;
 
+    @Column(name = "role_code")
+    private String roleCode;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -40,6 +43,14 @@ public class Role implements Serializable {
      */
     public void setRoleName(String roleName) {
         this.roleName = roleName == null ? null : roleName.trim();
+    }
+
+    public String getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
     }
 
     @Override

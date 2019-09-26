@@ -11,5 +11,6 @@
     <result column="menu_path" jdbcType="VARCHAR" property="menuPath" />
     <result column="menu_description" jdbcType="VARCHAR" property="menuDescription" />
     <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon"/>
   </resultMap>
 </mapper>
