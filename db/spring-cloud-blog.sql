@@ -1,39 +1,50 @@
 /*
- Navicat Premium Data Transfer
+Navicat MySQL Data Transfer
 
- Source Server         : localhost
- Source Server Type    : MySQL
- Source Server Version : 50723
- Source Host           : localhost:3306
- Source Schema         : spring-cloud-blog
+Source Server         : localhost
+Source Server Version : 80015
+Source Host           : localhost:3306
+Source Database       : spring-cloud-blog
 
- Target Server Type    : MySQL
- Target Server Version : 50723
- File Encoding         : 65001
+Target Server Type    : MYSQL
+Target Server Version : 80015
+File Encoding         : 65001
 
- Date: 01/08/2019 23:50:25
+Date: 2019-10-17 17:14:17
 */
 
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for base_article
+-- ----------------------------
+DROP TABLE IF EXISTS `base_article`;
+CREATE TABLE `base_article` (
+  `id` varchar(36) NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of base_article
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for base_blog
 -- ----------------------------
 DROP TABLE IF EXISTS `base_blog`;
-CREATE TABLE `base_blog`  (
+CREATE TABLE `base_blog` (
   `id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标题',
-  `tag` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标签',
-  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '内容',
-  `author` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '作者',
-  `create_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '标题',
+  `tag` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '标签',
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '内容',
+  `author` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '作者',
+  `create_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of base_blog
 -- ----------------------------
-INSERT INTO `base_blog` VALUES ('2', '测试er', '测试tag2', '测试er内容', '测试作者er', '2019-08-01 23:26:11');
-
-SET FOREIGN_KEY_CHECKS = 1;
+INSERT INTO `base_blog` VALUES ('8                                   ', '测试er', '测试tag2', '测试er内容', '2', '2019-09-25 11:04:14');

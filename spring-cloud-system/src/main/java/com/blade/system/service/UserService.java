@@ -2,18 +2,14 @@ package com.blade.system.service;
 
 import com.blade.common.base.BaseService;
 import com.blade.common.domain.JWT;
-import com.blade.common.utils.TreeUtil;
 import com.blade.system.common.enums.UserResponseEnum;
 import com.blade.system.common.exceptions.CustomUserException;
 import com.blade.system.common.utils.ContextUtil;
-import com.blade.system.entity.Menu;
-import com.blade.system.entity.Permission;
 import com.blade.system.entity.Role;
 import com.blade.system.entity.User;
 import com.blade.system.feignClients.AuthClient;
 import com.blade.system.feignClients.BlogClient;
 import com.blade.system.mapper.UserMapper;
-// import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.blade.system.mapper.UserRoleMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,13 +88,9 @@ public class UserService extends BaseService<UserMapper,User>{
         List<String> roles = roleList.stream().map(Role::getRoleCode).distinct().collect(Collectors.toList());
         vo.setRoles(roles);
         //权限信息
-        List<Permission> permissionList = mapper.getPermissionsByUserId(userId);
-        List<String> permissions = permissionList.stream().map(Permission::getPermissionCode).distinct().collect(Collectors.toList());
-        vo.setPermissions(permissions);
-        //菜单信息
-        List<Menu> menuList = mapper.getMenuByUserId(userId);
-        List<Menu> menus = TreeUtil.build(menuList, "-1");
-        vo.setMenus(menus);
+        List<String> permissionList = mapper.getPermissionsByUserId(userId);
+        permissionList = permissionList.stream().distinct().collect(Collectors.toList());
+        vo.setPermissions(permissionList);
         return vo;
     }
 }

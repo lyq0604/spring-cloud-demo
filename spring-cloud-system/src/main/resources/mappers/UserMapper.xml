@@ -20,15 +20,20 @@
       WHERE username = #{username}
     </select>
 
-    <select id="getPermissionsByUserId" resultType="com.blade.system.entity.Permission">
+    <select id="getPermissionsByUserId" resultType="string">
       SELECT
-          p.id AS id,
-          p.permission_name AS permissionName,
-          p.permission_code AS permissionCode
-      FROM rl_user_role rur
-      INNER JOIN rl_role_permission rrp ON rur.role_id = rrp.role_id
-      INNER JOIN base_permission p ON rrp.permission_id = p.id
-      WHERE rur.user_id = #{userId}
+          m.permission_code
+      FROM rl_role_permission rrp
+      LEFT JOIN base_menu m ON rrp.resource_id = m.id
+      LEFT JOIN rl_user_role rur ON rur.role_id = rrp.role_id
+      WHERE rur.user_id = #{userId} and rrp.resource_type = 'menu'
+      UNION
+      SELECT
+        o.permission_code
+      FROM rl_role_permission rrp
+      LEFT JOIN base_operation o ON rrp.resource_id = o.id
+      LEFT JOIN rl_user_role rur ON rur.role_id = rrp.role_id
+      WHERE rur.user_id = #{userId} and rrp.resource_type = 'operation'
     </select>
 
     <select id="getMenuByUserId" resultType="com.blade.system.entity.Menu">

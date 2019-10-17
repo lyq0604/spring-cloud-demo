@@ -1,12 +1,12 @@
 spring:
   application:
     name: spring-cloud-system
-  cloud:
-    config:
-      uri: http://localhost:18763
-      profile: dev
-      label: master
-      name: ${spring.application.name}
+#  cloud:
+#    config:
+#      uri: http://localhost:18763
+#      profile: dev
+#      label: master
+#      name: ${spring.application.name}
 
 #监控信息
 management:

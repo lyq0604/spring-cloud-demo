@@ -1,7 +1,6 @@
 package com.blade.system.mapper;
 
 import com.blade.system.entity.Menu;
-import com.blade.system.entity.Permission;
 import com.blade.system.entity.User;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
@@ -23,7 +22,7 @@ public interface UserMapper extends Mapper<User> {
      * @param userId
      * @return
      */
-    List<Permission> getPermissionsByUserId(String userId);
+    List<String> getPermissionsByUserId(String userId);
 
     /**
      * 根据用户id获取菜单列表

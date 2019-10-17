@@ -9,6 +9,12 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="qq" jdbcType="VARCHAR" property="qq"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
     </resultMap>
 
     <select id="getUserByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
