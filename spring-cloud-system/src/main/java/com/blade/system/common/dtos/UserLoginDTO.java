@@ -1,7 +1,7 @@
 package com.blade.system.common.dtos;
 
 import com.blade.common.domain.JWT;
-import com.blade.system.entity.User;
+import com.blade.system.base.domain.User;
 import lombok.Data;
 
 /**

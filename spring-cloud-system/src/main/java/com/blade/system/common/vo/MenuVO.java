@@ -1,7 +1,7 @@
 package com.blade.system.common.vo;
 
-import com.blade.system.entity.Menu;
-import com.blade.system.entity.Operation;
+import com.blade.system.base.domain.Menu;
+import com.blade.system.base.domain.Operation;
 import lombok.Data;
 
 import java.util.List;

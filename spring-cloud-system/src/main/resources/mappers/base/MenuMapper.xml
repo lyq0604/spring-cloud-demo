@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blade.system.base.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.blade.system.base.domain.Menu">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_path" jdbcType="VARCHAR" property="menuPath" />
+    <result column="menu_description" jdbcType="VARCHAR" property="menuDescription" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon"/>
+    <result column="permission_code" jdbcType="VARCHAR" property="permissionCode"/>
+    <result column="menu_component" jdbcType="VARCHAR" property="menuComponent" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="hidden" jdbcType="TINYINT" property="hidden" />
+  </resultMap>
+
+  <select id="selectMenuTreeNode" resultType="com.blade.system.common.vo.MenuTreeNode">
+    SELECT
+      id,
+      menu_name AS label,
+      parent_id AS parentId
+    FROM base_menu
+  </select>
+</mapper>

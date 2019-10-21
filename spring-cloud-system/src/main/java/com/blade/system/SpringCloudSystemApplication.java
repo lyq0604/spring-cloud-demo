@@ -16,7 +16,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.blade.system.feignClients"})
-@MapperScan(basePackages = {"com.blade.system.mapper"})
+@MapperScan(basePackages = {"com.blade.system"})
 // @EnableDistributedTransaction
 public class SpringCloudSystemApplication {
 

@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @create 9/26/19
  */
 @RestController
-@ControllerAdvice(basePackages = { "com.blade.system.controller" })
+@ControllerAdvice(basePackages = { "com.blade.system" })
 public class ResponseAdvice implements ResponseBodyAdvice<Object>{
     @Override
     public boolean supports(MethodParameter methodParameter, Class aClass) {

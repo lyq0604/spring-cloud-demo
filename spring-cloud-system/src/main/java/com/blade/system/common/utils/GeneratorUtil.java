@@ -1,7 +1,7 @@
 package com.blade.system.common.utils;
 
 import com.blade.system.common.enums.TemplateTypeEnum;
-import com.blade.system.entity.BaseGenerator;
+import com.blade.system.tools.domain.Generator;
 import java.util.HashMap;
 
 /**
@@ -88,14 +88,14 @@ public class GeneratorUtil {
         TYPE_MAPPING.put("timestamp", "LocalDateTime");
     }
 
-    public static String getJavaFullPath(BaseGenerator generator,String templateType) {
-        String javaPath = BASE_JAVA_PATH + generator.getPackageName().replace('.','/');
+    public static String getJavaFullPath(Generator generator, String templateType) {
+        String javaPath = BASE_JAVA_PATH + generator.getPackageName().replace('.','/') + "/" + generator.getModuleName();
         String className = generator.getTableInfo().getClassName();
         StringBuilder fullPath = new StringBuilder(javaPath);
         TemplateTypeEnum typeEnum = TemplateTypeEnum.valueOf(templateType.toUpperCase());
         switch (typeEnum) {
             case ENTITY:
-                fullPath.append("/entity/" + className + ".java");
+                fullPath.append("/domain/" + className + ".java");
                 break;
             case MAPPER:
                 fullPath.append("/mapper/" + className + "Mapper.java");
@@ -114,19 +114,19 @@ public class GeneratorUtil {
         return fullPath.toString();
     }
 
-    public static String getVueFullPath(BaseGenerator generator,String templateType) {
+    public static String getVueFullPath(Generator generator, String templateType) {
         String className = generator.getTableInfo().getClassName();
         StringBuilder fullPath = new StringBuilder(BASE_VUE_PATH);
         TemplateTypeEnum typeEnum = TemplateTypeEnum.valueOf(templateType.toUpperCase());
         switch (typeEnum) {
             case VUE_INDEX:
-                fullPath.append("/" + generator.getModuleName() +"/" + className + "/index.vue");
+                fullPath.append("/" + generator.getModuleName() +"/" + className.toLowerCase() + "/index.vue");
                 break;
             case VUE_FORM:
-                fullPath.append("/" + generator.getModuleName() +"/" + className + "/components/index.vue");
+                fullPath.append("/" + generator.getModuleName() +"/" + className.toLowerCase() + "/components/form.vue");
                 break;
             case VUE_JS:
-                fullPath.append("/api/" + generator.getModuleName() +"/" + className + "/index.js");
+                fullPath.append("/api/" + generator.getModuleName() +"/" + className.toLowerCase() + "/index.js");
                 break;
             default: break;
         }

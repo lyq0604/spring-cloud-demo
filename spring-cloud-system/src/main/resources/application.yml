@@ -69,7 +69,7 @@ security:
 
 # mybatis
 mybatis:
-  mapper-locations: classpath:mappers/**.xml
+  mapper-locations: classpath:mappers/*/*Mapper.xml
 
 #tx-lcn:
 ##  client:

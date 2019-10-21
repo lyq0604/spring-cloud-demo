@@ -8,7 +8,7 @@ export function add(data) {
     return request({
         url: '/api/${moduleName}/${tableInfo.classNameLower}s/add',
         method: 'post',
-        data: item
+        data: data
     })
 }
 
@@ -17,7 +17,7 @@ export function add(data) {
 */
 export function deleteByKey(id) {
     return request({
-        url: '/api/${moduleName}/${tableInfo.classNameLower}s/' + id
+        url: '/api/${moduleName}/${tableInfo.classNameLower}s/' + id,
         method: 'delete'
     })
 }
@@ -40,7 +40,7 @@ export function update(data) {
 */
 export function getByKey(id) {
     return request({
-        url: '/api/${moduleName}/${tableInfo.classNameLower}s/' + id
+        url: '/api/${moduleName}/${tableInfo.classNameLower}s/' + id,
         method: 'get'
     })
 }

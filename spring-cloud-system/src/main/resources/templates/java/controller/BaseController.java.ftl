@@ -1,8 +1,8 @@
-package ${packageName}.controller;
+package ${packageName}.${moduleName}.controller;
 
 import com.blade.common.base.BaseController;
-import ${packageName}.entity.${tableInfo.className};
-import ${packageName}.service.${tableInfo.className}Service;
+import ${packageName}.${moduleName}.domain.${tableInfo.className};
+import ${packageName}.${moduleName}.service.${tableInfo.className}Service;
 import org.springframework.web.bind.annotation.*;
 
 /**

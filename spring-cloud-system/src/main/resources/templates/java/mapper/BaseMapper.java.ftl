@@ -1,8 +1,7 @@
-package ${packageName}.mapper;
+package ${packageName}.${moduleName}.mapper;
 
-import ${packageName}.entity.${tableInfo.className};
+import ${packageName}.${moduleName}.domain.${tableInfo.className};
 import org.springframework.stereotype.Repository;
-import java.util.List;
 import com.blade.common.base.BaseMapper;
 
 @Repository

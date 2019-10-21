@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blade.system.base.mapper.UserMapper">
+
+    <sql id="baseColumns">
+        id,
+        name,
+        username,
+        password,
+        sex,
+        email,
+        phone,
+        address,
+        remark,
+        state
+    </sql>
+
+    <resultMap id="BaseResultMap" type="com.blade.system.base.domain.User">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+    </resultMap>
+
+    <!-- 根据用户名查询用户 -->
+    <select id="getUserByUserName" resultType="com.blade.system.base.domain.User">
+      SELECT
+          username,
+          password
+      FROM base_user
+      WHERE username = #{username}
+    </select>
+
+    <select id="getPermissionsByUserId" resultType="string">
+      SELECT
+          m.permission_code
+      FROM rl_role_permission rrp
+      LEFT JOIN base_menu m ON rrp.resource_id = m.id
+      LEFT JOIN rl_user_role rur ON rur.role_id = rrp.role_id
+      WHERE rur.user_id = #{userId} and rrp.resource_type = 'menu'
+      UNION
+      SELECT
+        o.permission_code
+      FROM rl_role_permission rrp
+      LEFT JOIN base_operation o ON rrp.resource_id = o.id
+      LEFT JOIN rl_user_role rur ON rur.role_id = rrp.role_id
+      WHERE rur.user_id = #{userId} and rrp.resource_type = 'operation'
+    </select>
+
+    <select id="getMenuByUserId" resultType="com.blade.system.base.domain.Menu">
+        SELECT
+            m.id AS id,
+            m.menu_name AS menuName,
+            m.menu_path AS menuPath,
+            m.menu_icon AS menuIcon,
+            m.parent_id AS parentId
+        FROM rl_user_role rur
+        INNER JOIN rl_role_menu rrm ON rur.role_id = rrm.role_id
+        INNER JOIN base_menu m ON rrm.menu_id = m.id
+        WHERE rur.user_id = #{userId}
+    </select>
+
+    <select id="selectListByEntity" parameterType="com.blade.system.base.domain.User" resultMap="BaseResultMap">
+        SELECT
+          <include refid="baseColumns"/>
+        FROM base_user
+        <where>
+            <if test="name != null and name != ''">
+                <bind name="nameLike" value="'%' + name + '%'"/>
+                and name like #{nameLike}
+            </if>
+        </where>
+    </select>
+
+</mapper>

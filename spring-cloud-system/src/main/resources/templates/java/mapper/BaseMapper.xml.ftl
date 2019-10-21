@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="${packageName}.${tableInfo.className}Mapper">
+<mapper namespace="${packageName}.${moduleName}.mapper.${tableInfo.className}Mapper">
 
     <!-- 基本列 -->
     <sql id="baseColumns">
@@ -10,7 +10,7 @@
     </sql>
 
     <!-- 基础映射 -->
-    <resultMap id="BaseResultMap" type="${packageName}.${tableInfo.className}">
+    <resultMap id="BaseResultMap" type="${packageName}.${moduleName}.domain.${tableInfo.className}">
     <#list tableInfo.columnList as column>
         <#if column.primaryKey>
             <id column="${column.columnName}" jdbcType="${column.columnType}" property="${column.attrName}"/>
@@ -21,7 +21,7 @@
     </resultMap>
 
     <!-- 条件查询列表 -->
-    <select id="selectListByEntity" parameterType="${packageName}.entity.${tableInfo.className}" resultMap="BaseResultMap">
+    <select id="selectListByEntity" parameterType="${packageName}.${moduleName}.domain.${tableInfo.className}" resultMap="BaseResultMap">
         SELECT
             <include refid="baseColumns"/>
         FROM ${tableInfo.tableName}

@@ -1,8 +1,8 @@
-package ${packageName}.service;
+package ${packageName}.${moduleName}.service;
 
 import com.blade.common.base.BaseService;
-import ${packageName}.entity.${tableInfo.className};
-import ${packageName}.mapper.${tableInfo.className}Mapper;
+import ${packageName}.${moduleName}.entity.${tableInfo.className};
+import ${packageName}.${moduleName}.mapper.${tableInfo.className}Mapper;
 import org.springframework.stereotype.Service;
 
 /**
