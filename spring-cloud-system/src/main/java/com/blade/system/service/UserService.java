@@ -93,4 +93,6 @@ public class UserService extends BaseService<UserMapper,User>{
         vo.setPermissions(permissionList);
         return vo;
     }
+
+
 }

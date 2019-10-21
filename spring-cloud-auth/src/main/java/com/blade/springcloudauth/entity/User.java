@@ -20,7 +20,7 @@ public class User implements Serializable {
 
     private String sex;
 
-    private String qq;
+    private String QQ;
 
     private String phone;
 
@@ -96,12 +96,12 @@ public class User implements Serializable {
         this.sex = sex;
     }
 
-    public String getQq() {
-        return qq;
+    public String getQQ() {
+        return QQ;
     }
 
-    public void setQq(String qq) {
-        this.qq = qq;
+    public void setQQ(String QQ) {
+        this.QQ = QQ;
     }
 
     public String getPhone() {
@@ -144,7 +144,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", sex='" + sex + '\'' +
-                ", qq='" + qq + '\'' +
+                ", qq='" + QQ + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", remark='" + remark + '\'' +

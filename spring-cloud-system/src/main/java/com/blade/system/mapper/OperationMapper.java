@@ -1,9 +1,9 @@
 package com.blade.system.mapper;
 
 
+import com.blade.common.base.BaseMapper;
 import com.blade.system.entity.Operation;
 import org.springframework.stereotype.Repository;
-import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * @author lyq
  */
 @Repository
-public interface OperationMapper extends Mapper<Operation>{
+public interface OperationMapper extends BaseMapper<Operation> {
 
     /**
      * 根据菜单id获取按钮列表

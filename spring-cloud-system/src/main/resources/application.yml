@@ -84,5 +84,8 @@ logging:
   level:
     com:
       codingapi: debug
+      blade:
+        system:
+          mapper: debug
 
 

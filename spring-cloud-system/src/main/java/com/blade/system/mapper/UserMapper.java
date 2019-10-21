@@ -1,14 +1,17 @@
 package com.blade.system.mapper;
 
+import com.blade.common.base.BaseMapper;
 import com.blade.system.entity.Menu;
 import com.blade.system.entity.User;
 import org.springframework.stereotype.Repository;
-import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
+/**
+ * @author lyq
+ */
 @Repository
-public interface UserMapper extends Mapper<User> {
+public interface UserMapper extends BaseMapper<User> {
 
     /**
      * 根据用户名获取用户

@@ -7,7 +7,6 @@ import tk.mybatis.mapper.annotation.KeySql;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @ApiModel(description = "用户实体")
 @Table(name = "base_user")
@@ -26,6 +25,18 @@ public class User implements Serializable {
 
     @ApiModelProperty(name = "password", value = "密码", dataType = "String")
     private String password;
+
+    private String sex;
+
+    private String email;
+
+    private String phone;
+
+    private String address;
+
+    private String remark;
+
+    private String state;
 
     private static final long serialVersionUID = 1L;
 
@@ -94,19 +105,67 @@ public class User implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", username=").append(username);
-        sb.append(", password=").append(password);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public String getSex() {
+        return sex;
     }
 
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", remark='" + remark + '\'' +
+                ", state=" + state +
+                '}';
+    }
 }

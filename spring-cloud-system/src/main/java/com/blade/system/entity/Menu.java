@@ -1,11 +1,8 @@
 package com.blade.system.entity;
 
-import com.blade.common.vo.TreeNode;
 import com.blade.system.common.utils.GenIdUtil;
 import tk.mybatis.mapper.annotation.KeySql;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;

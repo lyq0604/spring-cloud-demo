@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80015
 File Encoding         : 65001
 
-Date: 2019-10-17 17:14:09
+Date: 2019-10-21 17:04:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,10 +42,13 @@ INSERT INTO `base_menu` VALUES ('3', null, '用户管理', '/system/user', '@/vi
 INSERT INTO `base_menu` VALUES ('4', null, '角色管理', '/role', '角色管理', '1', 'table', 'MENU_SYSTEM_ROLE', null, null);
 INSERT INTO `base_menu` VALUES ('5', null, '字典管理', '/dict', '字典管理', '1', 'table', 'MENU_SYSTEM_DICT', null, null);
 INSERT INTO `base_menu` VALUES ('6', null, '菜单管理', '/menu', '菜单管理', '1', 'table', 'MENU_SYSTEM_MENU', null, null);
+INSERT INTO `base_menu` VALUES ('601665f31c744ab784cfe144e8397b15', 'Generator', '代码生成', '/tool/generator', '', 'b00a977b9f7c411eb5f3475a66ea7a5d', 'table', 'MENU_TOOL_GENERATOR', '1', null);
 INSERT INTO `base_menu` VALUES ('7', null, '文章管理', '/blog/article', '文章管理', '2', 'table', 'MENU_BLOG_ARTICLE', null, null);
 INSERT INTO `base_menu` VALUES ('7688f85dd0554f2290665e58f54bdb01', 'Monitor', '系统监控', '/monitor', '系统监控', '-1', 'table', 'MENU_MONITOR', '启用', null);
 INSERT INTO `base_menu` VALUES ('8', null, '标签管理', '/blog/tag', '标签管理', '2', 'table', 'MENU_BLOG_TAG', null, null);
+INSERT INTO `base_menu` VALUES ('80799cb6fee945e4922f7f895cad640a', 'Icon', '图标管理', '/tool/icon', '', 'b00a977b9f7c411eb5f3475a66ea7a5d', 'table', 'MENU_TOOL_ICON', '1', null);
 INSERT INTO `base_menu` VALUES ('9ded853a707b405b88876b19c54dc597', 'Exception', '异常记录', '/monitor/exception', '异常记录', '7688f85dd0554f2290665e58f54bdb01', 'table', 'MENU_MONITOR_EXCEPTION', '启用', null);
+INSERT INTO `base_menu` VALUES ('b00a977b9f7c411eb5f3475a66ea7a5d', 'Tool', '系统工具', '/tool', '', '-1', 'table', 'MENU_TOOL', '1', null);
 
 -- ----------------------------
 -- Table structure for base_operation
@@ -89,11 +92,10 @@ INSERT INTO `base_role` VALUES ('2', '普通用户', 'ROLE_USER');
 DROP TABLE IF EXISTS `base_user`;
 CREATE TABLE `base_user` (
   `id` varchar(36) NOT NULL,
-  `name` varchar(20) DEFAULT NULL,
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字汉字',
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `sex` varchar(36) DEFAULT NULL,
-  `qq` varchar(20) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
@@ -105,9 +107,10 @@ CREATE TABLE `base_user` (
 -- ----------------------------
 -- Records of base_user
 -- ----------------------------
-INSERT INTO `base_user` VALUES ('1', '测试用户', 'test', 'test', null, null, null, null, null, null, null);
-INSERT INTO `base_user` VALUES ('2', '系统管理员', 'admin', 'admin', null, null, null, null, null, null, null);
-INSERT INTO `base_user` VALUES ('7e79e7204b4447dda969af088df1f71e', null, 'zs', 'zs', null, null, null, null, null, null, null);
+INSERT INTO `base_user` VALUES ('1', '测试用户', 'test', 'test', null, null, null, null, null, null);
+INSERT INTO `base_user` VALUES ('2', '系统管理员', 'admin', 'admin', null, null, null, null, null, null);
+INSERT INTO `base_user` VALUES ('cb4e79d13a354b3292a5dcdd3161c583', '张三', 'zs1', null, '男', null, '13000000000', '北京市海淀区', '测试用例', null);
+INSERT INTO `base_user` VALUES ('f807db3b4f9b47c4b253dcf8d08c4d8b', '李四', 'ls', 'test', '女', null, '160145', null, null, null);
 
 -- ----------------------------
 -- Table structure for rl_role_permission
@@ -131,6 +134,8 @@ INSERT INTO `rl_role_permission` VALUES ('4', '1', '1', 'operation');
 INSERT INTO `rl_role_permission` VALUES ('5', '1', '6', 'menu');
 INSERT INTO `rl_role_permission` VALUES ('6', '1', '7', 'menu');
 INSERT INTO `rl_role_permission` VALUES ('7', '1', '8', 'menu');
+INSERT INTO `rl_role_permission` VALUES ('8', '1', '601665f31c744ab784cfe144e8397b15', 'menu');
+INSERT INTO `rl_role_permission` VALUES ('9', '1', 'b00a977b9f7c411eb5f3475a66ea7a5d', 'menu');
 
 -- ----------------------------
 -- Table structure for rl_user_role

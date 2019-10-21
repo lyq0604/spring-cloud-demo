@@ -34,6 +34,8 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object>{
             result = new BaseResult().success();
         } else if (body instanceof BaseResult) {
             result = (BaseResult) body;
+        } else if (body.getClass().isArray()) {
+            return body;
         } else {
             result = new BaseResult().success(body);
         }

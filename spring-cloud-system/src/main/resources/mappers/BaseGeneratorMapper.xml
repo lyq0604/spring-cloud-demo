@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blade.system.mapper.BaseGeneratorMapper">
+
+  <!-- 查询所有数据库 -->
+  <select id="selectDatabaseInfo" resultType="string">
+    SELECT
+      SCHEMA_NAME
+    FROM information_schema.SCHEMATA
+    WHERE SCHEMA_NAME LIKE concat('spring-cloud', '%')
+  </select>
+
+  <!-- 查询指定数据库中的表 -->
   <select id="selectTableList" resultType="com.blade.system.common.vo.TableVO">
     SELECT
-      TABLE_NAME as tableName,
-      TABLE_COMMENT AS tableComment
-    FROM infomation_schema.TABLES t
-    left join infomation_schema.TABLE_CONSTRAINTS tc on tc.TABLE_SCHEMA = t.TABLE_SCHEMA and tc.TABLE_NAME = t.TABLE_NAME
-    where t.TABLE_SCHEMA = #{dataBase}
+      t.TABLE_NAME as tableName,
+      t.TABLE_COMMENT AS tableComment,
+      t.ENGINE AS tableEngine,
+      t.CREATE_TIME AS createTime
+    FROM information_schema.TABLES t
+    left join information_schema.TABLE_CONSTRAINTS tc on tc.TABLE_SCHEMA = t.TABLE_SCHEMA and tc.TABLE_NAME = t.TABLE_NAME
+    where t.TABLE_SCHEMA = #{database}
+    <if test="tableName != null and tableName != ''">
+      <bind name="nameLike" value="'%' + tableName + '%'"/>
+      and t.TABLE_NAME like #{nameLike}
+    </if>
   </select>
+
+  <!-- 查询指定表的字段信息 -->
+  <select id="selectColumnList" resultType="com.blade.system.entity.ColumnInfo">
+    SELECT
+      COLUMN_NAME AS columnName,
+      DATA_TYPE AS columnType,
+      COLUMN_COMMENT AS columnComment,
+      CASE COLUMN_KEY WHEN 'PRI' THEN true ELSE FALSE END AS primaryKey,
+      'equals' AS searchType,
+      TRUE AS enableListView,
+      TRUE AS enableFormView,
+      FALSE AS enableListQuery
+    FROM information_schema.COLUMNS
+    WHERE TABLE_SCHEMA = #{database} and TABLE_NAME = #{tableName}
+  </select>
+
+  <!-- 查询主键信息 -->
+  <select id="selectPrimaryKey" resultType="java.lang.String">
+    SELECT
+      COLUMN_NAME
+    FROM information_schema.COLUMNS
+    WHERE TABLE_SCHEMA = #{database}
+    AND TABLE_NAME = #{tableName}
+    AND COLUMN_KEY = 'PRI'
+  </select>
+
 </mapper>
